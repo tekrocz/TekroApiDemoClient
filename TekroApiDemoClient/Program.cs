@@ -19,7 +19,7 @@ namespace TekroApiDemoClient;
 /// </summary>
 internal class Program
 {
-    private const string ApiUrl = "https://api.tekro.cz"; // api base url
+    private const string ApiUrl = "https://edoc.tekro.cz"; // api base url
     private const string GetRequestUrl = $"{ApiUrl}/..."; // put the GET url here
     private const string PostRequestUrl = $"{ApiUrl}/..."; // put the POST url here
 
@@ -50,7 +50,7 @@ internal class Program
 
         // prepare auth headers and add them to the request message
         // timestamp and API token
-        var unixTimeStamp = DateTimeOffset.Now.ToUnixTimeSeconds(); // cannot not be in future, cannot be more than 60 seconds in past.
+        var unixTimeStamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds(); // cannot not be in future, cannot be more than 60 seconds in past.
         httpRequestMessage.Headers.Add("Api-Token", new[] { ApiToken });
         httpRequestMessage.Headers.Add("Authorization-Timestamp", new[] { $"{unixTimeStamp}" });
 
